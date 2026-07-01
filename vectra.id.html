@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vectra Architects – Forming Spaces, Directing Visions</title>
+  <meta name="description" content="Vectra Architects – Studio arsitektur profesional. Desain rumah modern, fungsional, dan estetis di seluruh Indonesia."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+  <style>
+  /* ── RESET ──────────────────────────────────────── */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  img{display:block;max-width:100%;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+
+  /* ── TOKENS ─────────────────────────────────────── */
+  :root{
+    --black:#111;
+    --dark:#1C1C1C;
+    --mid:#777;
+    --lite:#F8F6F2;
+    --white:#fff;
+    --gold:#C9A96E;
+    --gold2:#e6c98a;
+    --max:1200px;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',sans-serif;
+  }
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem;}
+
+  /* ── NAVBAR ─────────────────────────────────────── */
+  #nav{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    padding:1.4rem 0;
+    background:transparent;
+    transition:background .35s,padding .35s,box-shadow .35s;
+  }
+  #nav.scrolled{background:var(--dark);padding:.9rem 0;box-shadow:0 2px 24px rgba(0,0,0,.3);}
+  .nav-i{display:flex;align-items:center;justify-content:space-between;}
+
+  /* dual-logo trick: dark site = always white logo */
+  .logo-img{height:38px;filter:brightness(0) invert(1);opacity:.92;transition:opacity .3s;}
+  .logo-img:hover{opacity:1;}
+
+  .nav-links{display:flex;gap:2.2rem;align-items:center;}
+  .nav-links a{
+    font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+    color:rgba(255,255,255,.75);position:relative;transition:color .2s;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;
+    background:var(--gold);transition:width .3s;
+  }
+  .nav-links a:hover{color:#fff;}
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cta{
+    font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    padding:.65rem 1.4rem;background:var(--gold);color:#fff;
+    transition:background .25s;
+  }
+  .nav-cta:hover{background:#b8914e;}
+
+  /* hamburger */
+  .hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;}
+  .hbg span{display:block;width:24px;height:1.5px;background:#fff;transition:all .3s;}
+
+  /* mobile overlay */
+  .mob-menu{
+    display:none;position:fixed;inset:0;background:var(--dark);z-index:999;
+    flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;
+  }
+  .mob-menu.open{display:flex;}
+  .mob-menu a{font-family:var(--serif);font-size:2rem;font-weight:300;color:#fff;}
+  .mob-close{
+    position:absolute;top:1.8rem;right:2rem;
+    background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;
+  }
+
+  /* ── HERO ───────────────────────────────────────── */
+  #hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
+
+  /* slideshow */
+  .slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.2s ease;
+  }
+  .slide.active{opacity:1;}
+  .slide::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.2) 100%);
+  }
+
+  .hero-body{
+    position:absolute;inset:0;z-index:2;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding-bottom:5rem;
+  }
+  .hero-eyebrow{
+    font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.1rem;
+  }
+  .hero-h1{
+    font-family:var(--serif);
+    font-size:clamp(2.8rem,6vw,6rem);
+    font-weight:300;line-height:1.05;
+    color:#fff;margin-bottom:.6rem;
+  }
+  .hero-h1 em{font-style:italic;color:var(--gold);}
+  .hero-sub{
+    font-family:var(--serif);font-size:clamp(.9rem,1.4vw,1.15rem);
+    font-weight:300;font-style:italic;
+    color:rgba(255,255,255,.6);margin-bottom:2.5rem;max-width:600px;line-height:1.6;
+  }
+  .hero-cats{display:flex;gap:0;flex-wrap:wrap;}
+  .hero-cat{
+    font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+    padding:.75rem 1.6rem;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);
+    transition:all .25s;
+  }
+  .hero-cat:hover,.hero-cat.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+
+  /* dots */
+  .hero-dots{
+    position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);
+    z-index:3;display:flex;gap:.5rem;
+  }
+  .hero-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.35);transition:background .3s;cursor:pointer;
+  }
+  .hero-dot.active{background:var(--gold);}
+
+  /* ── OUR STORY / TENTANG ────────────────────────── */
+  #tentang{padding:100px 0;background:#fff;}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+
+  .story-left h2{
+    font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);
+    font-weight:400;line-height:1.2;margin-bottom:.5rem;
+  }
+  .story-sub{
+    font-family:var(--serif);font-size:1.05rem;font-style:italic;
+    color:var(--mid);margin-bottom:2rem;
+  }
+  .story-label{
+    font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:1.5rem;
+  }
+  .story-label::before{content:'';flex:none;width:30px;height:1px;background:var(--gold);}
+  .story-p{font-size:.88rem;line-height:1.9;color:var(--mid);margin-bottom:1rem;}
+  .story-more{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--dark);border-bottom:1px solid var(--dark);padding-bottom:2px;
+    transition:color .2s,border-color .2s;margin-top:1rem;
+  }
+  .story-more:hover{color:var(--gold);border-color:var(--gold);}
+
+  /* right: image collage */
+  .story-right{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .story-img-big{grid-column:span 2;aspect-ratio:16/9;overflow:hidden;}
+  .story-img-big img,.story-img-sm img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+  .story-img-sm{aspect-ratio:1/1;overflow:hidden;}
+  .story-img-big:hover img,.story-img-sm:hover img{transform:scale(1.04);}
+
+  /* stat strip */
+  .story-stats{
+    display:flex;gap:0;border-top:1px solid #eee;margin-top:2.5rem;padding-top:2rem;
+  }
+  .story-stat{flex:1;text-align:center;border-right:1px solid #eee;padding:.5rem;}
+  .story-stat:last-child{border-right:none;}
+  .snum{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--dark);}
+  .slbl{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-top:.3rem;}
+
+  /* ── SERVICE BANNER ──────────────────────────────── */
+  #services{background:var(--dark);padding:60px 0 0;}
+  .svc-banner-text{
+    text-align:center;padding-bottom:3rem;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .svc-eyebrow{
+    font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1rem;
+  }
+  .svc-banner-title{
+    font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2.2rem);
+    font-weight:400;color:#fff;line-height:1.3;max-width:720px;margin:0 auto;
+  }
+  .svc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;}
+  .svc-card{
+    padding:3rem 2rem;border-right:1px solid rgba(255,255,255,.07);
+    transition:background .3s;text-align:center;
+  }
+  .svc-card:last-child{border-right:none;}
+  .svc-card:hover{background:rgba(201,169,110,.08);}
+  .svc-icon{
+    width:64px;height:64px;margin:0 auto 1.5rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .svc-icon svg{width:48px;height:48px;stroke:var(--gold);fill:none;stroke-width:1.3;}
+  .svc-title{
+    font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+    color:#fff;margin-bottom:.8rem;
+  }
+  .svc-desc{font-size:.78rem;line-height:1.7;color:rgba(255,255,255,.45);}
+
+  /* ── PROJECTS / PORTOFOLIO ───────────────────────── */
+  #portofolio{padding:100px 0;background:var(--lite);}
+  .section-eyebrow{
+    font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:.8rem;
+  }
+  .section-h2{
+    font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);
+    font-weight:400;line-height:1.2;margin-bottom:2.5rem;
+  }
+  .porto-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;
+  }
+  .porto-card{position:relative;overflow:hidden;cursor:pointer;}
+  .porto-card img{
+    width:100%;aspect-ratio:4/3;object-fit:cover;
+    display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94);
+  }
+  .porto-card:hover img{transform:scale(1.07);}
+  .porto-caption{
+    padding:1rem 0 .5rem;
+  }
+  .porto-name{
+    font-family:var(--serif);font-size:1.1rem;font-weight:500;
+    color:var(--dark);margin-bottom:.25rem;
+  }
+  .porto-loc{font-size:.72rem;letter-spacing:.1em;color:var(--mid);text-transform:uppercase;}
+
+  /* hover overlay */
+  .porto-ov{
+    position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,.7),transparent);
+    opacity:0;transition:opacity .4s;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;
+  }
+  .porto-card:hover .porto-ov{opacity:1;}
+  .porto-ov .porto-name{color:#fff;margin-bottom:.2rem;}
+  .porto-ov .porto-loc{color:var(--gold2);}
+
+  /* ── CITIES MARQUEE ──────────────────────────────── */
+  #cities{padding:40px 0;background:#fff;overflow:hidden;border-top:1px solid #f0ebe3;border-bottom:1px solid #f0ebe3;}
+  .marquee-label{
+    font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--mid);text-align:center;margin-bottom:1.2rem;
+  }
+  .marquee-wrap{overflow:hidden;}
+  .marquee-track{
+    display:flex;gap:3rem;width:max-content;
+    animation:marquee 22s linear infinite;
+  }
+  .marquee-wrap:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  .city-item{
+    font-family:var(--serif);font-size:1.3rem;font-weight:300;
+    color:var(--dark);white-space:nowrap;opacity:.6;
+    display:flex;align-items:center;gap:1.5rem;
+  }
+  .city-item::after{content:'·';color:var(--gold);font-size:1.5rem;}
+
+  /* ── KEUNGGULAN IMAGES ───────────────────────────── */
+  #keunggulan{padding:100px 0;background:var(--dark);}
+  #keunggulan .section-h2{color:#fff;}
+  #keunggulan .section-eyebrow{color:var(--gold);}
+  .kung-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem;
+  }
+  .kung-card{
+    position:relative;overflow:hidden;border-radius:2px;
+    background:#222;cursor:pointer;
+  }
+  .kung-card img{
+    width:100%;height:260px;object-fit:cover;
+    transition:transform .6s;opacity:.9;
+  }
+  .kung-card:hover img{transform:scale(1.05);opacity:1;}
+  .kung-overlay{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.7));
+    padding:2rem 1.2rem 1.2rem;
+    opacity:0;transition:opacity .35s;
+  }
+  .kung-card:hover .kung-overlay{opacity:1;}
+  .kung-overlay-text{
+    font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;
+  }
+
+  /* ── CONTACT CTA ─────────────────────────────────── */
+  #contact{
+    padding:70px 0;
+    background:linear-gradient(135deg,#1a1612 0%,#2a2319 100%);
+    text-align:center;
+  }
+  .contact-h2{
+    font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);
+    font-weight:300;color:#fff;margin-bottom:.8rem;
+  }
+  .contact-sub{font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:2rem;line-height:1.7;}
+  .contact-btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    padding:.85rem 2.2rem;background:var(--gold);color:#fff;transition:background .25s;
+  }
+  .contact-btn:hover{background:#b8914e;}
+
+  /* ── PROCESS ─────────────────────────────────────── */
+  #proses{padding:80px 0;background:#fff;}
+  .process-header{text-align:center;margin-bottom:3.5rem;}
+  .process-header .section-h2{margin-bottom:0;}
+  .process-steps{
+    display:grid;grid-template-columns:repeat(6,1fr);
+    position:relative;
+  }
+  .process-steps::before{
+    content:'';position:absolute;
+    top:28px;left:8.33%;right:8.33%;
+    height:1px;background:#e0d9cf;
+    z-index:0;
+  }
+  .pstep{
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;padding:0 .5rem;position:relative;z-index:1;
+  }
+  .pstep-num{
+    width:56px;height:56px;border-radius:50%;
+    background:#fff;border:1px solid #e0d9cf;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--dark);
+    margin-bottom:1rem;transition:all .3s;
+  }
+  .pstep:hover .pstep-num{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .pstep-title{
+    font-size:.68rem;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--dark);margin-bottom:.4rem;
+  }
+  .pstep-desc{font-size:.73rem;line-height:1.6;color:var(--mid);}
+
+  /* ── WHY VECTRA ──────────────────────────────────── */
+  #why{padding:100px 0;background:var(--lite);}
+  .why-header{text-align:center;margin-bottom:3.5rem;}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#e8e3db;}
+  .why-card{
+    background:var(--lite);padding:2.8rem 2rem;
+    transition:background .3s;text-align:center;
+  }
+  .why-card:hover{background:#fff;}
+  .why-icon{
+    font-size:2.2rem!important;color:var(--gold);margin-bottom:1.2rem;
+    display:block;
+  }
+  .why-title{
+    font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--dark);margin-bottom:.8rem;
+  }
+  .why-desc{font-size:.82rem;line-height:1.8;color:var(--mid);}
+
+  /* ── PAKET ───────────────────────────────────────── */
+  #paket{padding:100px 0;background:#fff;}
+  .paket-header{text-align:center;margin-bottom:.5rem;}
+  .paket-sub{
+    text-align:center;font-size:.88rem;color:var(--mid);
+    max-width:520px;margin:.8rem auto 3rem;line-height:1.7;
+  }
+  .pkg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#e8e3db;}
+  .pkg-card{
+    background:#fff;padding:2.5rem 1.8rem;
+    display:flex;flex-direction:column;position:relative;
+    transition:background .3s;
+  }
+  .pkg-card:hover:not(.pkg-feat){background:var(--lite);}
+  .pkg-card.pkg-feat{background:var(--dark);}
+
+  .pkg-tag{
+    font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.2rem;
+  }
+  .pkg-name{
+    font-family:var(--serif);font-size:1.3rem;font-weight:500;
+    color:var(--dark);margin-bottom:.5rem;
+  }
+  .pkg-card.pkg-feat .pkg-name{color:#fff;}
+  .pkg-price{
+    display:flex;align-items:baseline;gap:.25rem;
+    margin-bottom:1.6rem;
+  }
+  .pkg-num{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--gold);}
+  .pkg-unit{font-size:.75rem;color:var(--mid);}
+  .pkg-card.pkg-feat .pkg-unit{color:rgba(255,255,255,.35);}
+  .pkg-hr{width:100%;height:1px;background:#e8e3db;margin-bottom:1.6rem;}
+  .pkg-card.pkg-feat .pkg-hr{background:rgba(255,255,255,.1);}
+  .pkg-feats{flex:1;display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;}
+  .pkg-feat-item{
+    display:flex;align-items:flex-start;gap:.6rem;
+    font-size:.8rem;line-height:1.5;color:var(--mid);
+  }
+  .pkg-card.pkg-feat .pkg-feat-item{color:rgba(255,255,255,.6);}
+  .pkg-check{flex:none;margin-top:.1rem;}
+  .pkg-check svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2.5;}
+  .pkg-btn{
+    display:block;text-align:center;
+    font-size:.68rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    padding:.85rem;border:1px solid var(--gold);color:var(--gold);
+    transition:all .25s;
+  }
+  .pkg-btn:hover,.pkg-card.pkg-feat .pkg-btn{background:var(--gold);color:#fff;}
+  .pkg-card.pkg-feat .pkg-btn:hover{background:#b8914e;}
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer{background:#0f0e0c;padding:70px 0 36px;}
+  .ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;
+    padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2rem;}
+  .ft-logo{height:34px;filter:brightness(0) invert(1);opacity:.6;margin-bottom:1.2rem;}
+  .ft-tagline{
+    font-family:var(--serif);font-size:.95rem;font-style:italic;
+    color:rgba(255,255,255,.35);line-height:1.6;margin-bottom:1.5rem;
+  }
+  .ft-social{display:flex;gap:.6rem;}
+  .ft-social a{
+    width:34px;height:34px;border:1px solid rgba(255,255,255,.12);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.4);font-size:.7rem;font-weight:600;
+    letter-spacing:.05em;transition:all .25s;
+  }
+  .ft-social a:hover{border-color:var(--gold);color:var(--gold);}
+  .ft-head{
+    font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.4rem;
+  }
+  .ft-links{display:flex;flex-direction:column;gap:.75rem;}
+  .ft-links a{font-size:.82rem;color:rgba(255,255,255,.4);transition:color .2s;}
+  .ft-links a:hover{color:#fff;}
+  .ft-contact-row{display:flex;gap:.7rem;font-size:.82rem;color:rgba(255,255,255,.4);margin-bottom:.9rem;align-items:flex-start;}
+  .ft-contact-row .material-icons{font-size:1rem!important;color:var(--gold);margin-top:.05rem;flex:none;}
+  .ft-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .ft-copy{font-size:.73rem;color:rgba(255,255,255,.2);}
+
+  /* ── FLOATING WA ─────────────────────────────────── */
+  .wa-btn{
+    position:fixed;bottom:1.8rem;right:1.8rem;z-index:999;
+    width:54px;height:54px;border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 20px rgba(37,211,102,.45);
+    transition:transform .25s,box-shadow .25s;
+  }
+  .wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55);}
+  .wa-btn svg{width:28px;height:28px;fill:#fff;}
+
+  /* ── REVEAL ──────────────────────────────────────── */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s;}
+  .reveal.v{opacity:1;transform:translateY(0);}
+  .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media(max-width:1024px){
+    .story-grid,.pkg-grid{grid-template-columns:1fr 1fr;}
+    .svc-cards{grid-template-columns:repeat(2,1fr);}
+    .porto-grid{grid-template-columns:repeat(2,1fr);}
+    .kung-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .process-steps{grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .process-steps::before{display:none;}
+    .ft-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+  }
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none;}
+    .hbg{display:flex;}
+    .story-grid{grid-template-columns:1fr;}
+    .story-right{grid-template-columns:1fr 1fr;}
+    .svc-cards{grid-template-columns:1fr;}
+    .svc-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);}
+    .porto-grid,.kung-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .pkg-grid{grid-template-columns:1fr;}
+    .process-steps{grid-template-columns:repeat(2,1fr);}
+    .ft-grid{grid-template-columns:1fr;}
+    .hero-cats{gap:.4rem;}
+    .hero-cat{flex:1;text-align:center;padding:.6rem .8rem;}
+  }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav id="nav">
+  <div class="wrap nav-i">
+    <a href="#">
+      <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/Untitled-1-6.png"
+           alt="Vectra Architects" class="logo-img"/>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#portofolio">Portofolio</a></li>
+      <li><a href="#paket">Paket</a></li>
+      <li><a href="#why">Keunggulan</a></li>
+    </ul>
+    <a href="https://wa.me/6282134816488?text=Halo,%20saya%20tertarik%20dengan%20jasa%20arsitek%20Vectra%20Architects,%20mohon%20informasi%20lengkapnya%20ya"
+       target="_blank" class="nav-cta">Konsultasi Gratis</a>
+    <button class="hbg" id="hbg" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" id="mobClose">&times;</button>
+  <a href="#tentang"   onclick="closeMob()">Tentang</a>
+  <a href="#portofolio" onclick="closeMob()">Portofolio</a>
+  <a href="#paket"     onclick="closeMob()">Paket</a>
+  <a href="#why"       onclick="closeMob()">Keunggulan</a>
+  <a href="https://wa.me/6282134816488" target="_blank"
+     style="font-family:var(--sans);font-size:1rem;background:var(--gold);color:#fff;padding:.8rem 2rem;">
+    Konsultasi Gratis
+  </a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <!-- Slideshow images (Vectra portfolio photos) -->
+  <div class="slide active" style="background-image:url('https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-desain-arsitek-2.png')"></div>
+  <div class="slide" style="background-image:url('https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-arsitek-bekasi.png')"></div>
+  <div class="slide" style="background-image:url('https://vectraarchitects.com/wp-content/uploads/2026/06/harga-jasa-arsitek.png')"></div>
+  <div class="slide" style="background-image:url('https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-desain-rumah.png')"></div>
+
+  <div class="hero-body">
+    <div class="wrap">
+      <p class="hero-eyebrow">Studio Arsitektur Profesional — Indonesia</p>
+      <h1 class="hero-h1">Forming Spaces,<br/><em>Directing Visions.</em></h1>
+      <p class="hero-sub">Bukan sekadar studio yang menggambar bangunan — kami adalah rekan perjalanan Anda dalam merajut ruang hidup.</p>
+      <div class="hero-cats">
+        <a href="#portofolio" class="hero-cat active">Desain Arsitektur</a>
+        <a href="#portofolio" class="hero-cat">Desain Interior</a>
+        <a href="#portofolio" class="hero-cat">Portofolio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dot nav -->
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+    <div class="hero-dot" onclick="goSlide(3)"></div>
+  </div>
+</section>
+
+<!-- ══════════ TENTANG / OUR STORY ══════════ -->
+<section id="tentang">
+  <div class="wrap">
+    <div class="story-grid">
+
+      <!-- LEFT: text -->
+      <div class="story-left reveal">
+        <h2>Tentang Kami</h2>
+        <p class="story-sub">Mengenal lebih dekat visi, komitmen, dan cara kami bekerja</p>
+
+        <p class="story-label">Bagaimana Kami Memulai</p>
+
+        <p class="story-p">Vectra Architects lahir dari sebuah keyakinan sederhana: setiap orang berhak memiliki hunian yang tidak hanya indah, tetapi juga mencerminkan jati diri dan gaya hidup unik pemiliknya.</p>
+        <p class="story-p">Dikelola oleh tim arsitek lulusan Sarjana dan Magister, kami membangun reputasi kami satu proyek demi satu proyek — dengan pendekatan yang penuh ketelitian, transparan, dan benar-benar personal. Mulai dari Jabodetabek hingga Kalimantan, kami telah mempercayakan nama kami kepada lebih dari 50 keluarga di seluruh Indonesia.</p>
+        <p class="story-p">Vectra Architects adalah studio arsitektur dan desain layanan penuh yang merancang hunian dari konsep hingga serah terima. Kami dikenal atas ruang yang seimbang — terasa modern namun tak lekang oleh waktu — dan selalu memprioritaskan kenyamanan serta nilai investasi jangka panjang klien kami.</p>
+
+        <div class="story-stats">
+          <div class="story-stat"><div class="snum">50+</div><div class="slbl">Proyek Selesai</div></div>
+          <div class="story-stat"><div class="snum">10+</div><div class="slbl">Kota Dilayani</div></div>
+          <div class="story-stat"><div class="snum">100%</div><div class="slbl">Klien Puas</div></div>
+        </div>
+
+        <a href="https://wa.me/6282134816488?text=Halo,%20saya%20ingin%20konsultasi%20dengan%20Vectra%20Architects"
+           target="_blank" class="story-more">Mulai Konsultasi →</a>
+      </div>
+
+      <!-- RIGHT: image collage -->
+      <div class="story-right reveal d2">
+        <!-- big photo: team/studio (ChatGPT generated) -->
+        <div class="story-img-big">
+          <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/ChatGPT-Image-Jun-14-2026-07_05_10-PM.png"
+               alt="Tim Vectra Architects"/>
+        </div>
+        <!-- two credential infographic images -->
+        <div class="story-img-sm">
+          <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/DESAIN-ARSITEK-TERPERCAYA-DAN.png"
+               alt="Desain Arsitek Terpercaya"/>
+        </div>
+        <div class="story-img-sm">
+          <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/ARSITEK-LULUSAN-SARJANA-DAN-MAGISTER.png"
+               alt="Arsitek Lulusan Sarjana dan Magister"/>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section id="services">
+  <div class="wrap">
+    <!-- Banner text like arteliving.id -->
+    <div class="svc-banner-text reveal">
+      <p class="svc-eyebrow">Layanan Kami</p>
+      <h2 class="svc-banner-title">
+        Vectra Architects menawarkan jasa desain arsitektur, interior, dan gambar kerja lengkap dengan harga transparan berbasis m²
+      </h2>
+    </div>
+  </div>
+
+  <!-- 4 service cards full-width -->
+  <div class="svc-cards">
+
+    <div class="svc-card reveal">
+      <div class="svc-icon">
+        <svg viewBox="0 0 48 48">
+          <rect x="8" y="16" width="32" height="24" rx="1"/>
+          <polyline points="16,16 24,8 32,16"/>
+          <line x1="20" y1="40" x2="20" y2="28"/><line x1="28" y1="40" x2="28" y2="28"/>
+          <line x1="20" y1="28" x2="28" y2="28"/>
+        </svg>
+      </div>
+      <div class="svc-title">Desain Arsitektur</div>
+      <div class="svc-desc">Hunian Pribadi &nbsp;·&nbsp; Komersial<br/>Renovasi &nbsp;·&nbsp; Pengembangan</div>
+    </div>
+
+    <div class="svc-card reveal d1">
+      <div class="svc-icon">
+        <svg viewBox="0 0 48 48">
+          <rect x="6" y="10" width="36" height="28" rx="1"/>
+          <line x1="14" y1="20" x2="34" y2="20"/>
+          <line x1="14" y1="26" x2="34" y2="26"/>
+          <line x1="14" y1="32" x2="24" y2="32"/>
+          <rect x="30" y="24" width="8" height="8"/>
+        </svg>
+      </div>
+      <div class="svc-title">Desain Interior</div>
+      <div class="svc-desc">Residensial &nbsp;·&nbsp; Apartemen &nbsp;·&nbsp; Kantor<br/>Café &amp; Restaurant &nbsp;·&nbsp; Area Publik</div>
+    </div>
+
+    <div class="svc-card reveal d2">
+      <div class="svc-icon">
+        <svg viewBox="0 0 48 48">
+          <rect x="6" y="6" width="36" height="28" rx="1"/>
+          <path d="M14 28 L20 18 L26 24 L32 16 L38 22"/>
+          <line x1="6" y1="38" x2="42" y2="38"/><line x1="16" y1="34" x2="16" y2="38"/>
+          <line x1="32" y1="34" x2="32" y2="38"/>
+        </svg>
+      </div>
+      <div class="svc-title">Visualisasi 3D</div>
+      <div class="svc-desc">Eksterior 3D &nbsp;·&nbsp; Interior 3D<br/>Animasi Video &nbsp;·&nbsp; Virtual Tour</div>
+    </div>
+
+    <div class="svc-card reveal d3">
+      <div class="svc-icon">
+        <svg viewBox="0 0 48 48">
+          <path d="M10 38 L10 14 L24 8 L38 14 L38 38"/>
+          <line x1="6" y1="38" x2="42" y2="38"/>
+          <rect x="19" y="26" width="10" height="12"/>
+          <rect x="13" y="18" width="8" height="7"/>
+          <rect x="27" y="18" width="8" height="7"/>
+          <line x1="24" y1="8" x2="24" y2="14"/>
+        </svg>
+      </div>
+      <div class="svc-title">DED &amp; RAB</div>
+      <div class="svc-desc">Gambar Kerja Lengkap &nbsp;·&nbsp; Struktur<br/>Mekanikal &amp; Elektrikal &nbsp;·&nbsp; Anggaran Biaya</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ PORTOFOLIO / PROJECTS ══════════ -->
+<section id="portofolio">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Proyek</p>
+    <h2 class="section-h2 reveal">Karya Terbaik Kami</h2>
+
+    <div class="porto-grid">
+
+      <div class="porto-card reveal">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-gambar-bangunan.png" alt="Rumah 2 Lantai Malang"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Malang, Jawa Timur</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Malang, Jawa Timur</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal d1">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-gambar-3d.png" alt="Area Perumahan Surabaya"/>
+        <div class="porto-ov">
+          <div class="porto-name">Area Perumahan</div>
+          <div class="porto-loc">Surabaya, Jawa Timur</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Area Perumahan</div>
+          <div class="porto-loc">Surabaya, Jawa Timur</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal d2">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-gamabr-rumah.png" alt="Rumah 2 Lantai Tangerang"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Tangerang Selatan, Banten</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Tangerang Selatan, Banten</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-desain-rumah.png" alt="Rumah 2 Lantai Semarang"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Semarang, Jawa Tengah</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Semarang, Jawa Tengah</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal d1">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-desain-arsitek-2.png" alt="Rumah Modern Semarang"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah Modern</div>
+          <div class="porto-loc">Semarang, Jawa Tengah</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah Modern</div>
+          <div class="porto-loc">Semarang, Jawa Tengah</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal d2">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/jasa-arsitek-bekasi.png" alt="Rumah 2 Lantai Sentul"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Sentul, Bogor</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Sentul, Bogor</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/harga-jasa-arsitek.png" alt="Rumah 2 Lantai Kendal"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Kendal, Jawa Tengah</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Kendal, Jawa Tengah</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal d1">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/gambar-bangunan.png" alt="Rumah Kalimantan Barat"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Kalimantan Barat</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Kalimantan Barat</div>
+        </div>
+      </div>
+
+      <div class="porto-card reveal d2">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/bikin-rumah-pakai-arsitek.png" alt="Rumah 2 Lantai Tegal"/>
+        <div class="porto-ov">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Tegal, Jawa Tengah</div>
+        </div>
+        <div class="porto-caption">
+          <div class="porto-name">Rumah 2 Lantai</div>
+          <div class="porto-loc">Tegal, Jawa Tengah</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CITIES MARQUEE ══════════ -->
+<section id="cities">
+  <p class="marquee-label">Kota yang telah kami layani</p>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- first copy -->
+      <div class="city-item">Malang</div>
+      <div class="city-item">Surabaya</div>
+      <div class="city-item">Semarang</div>
+      <div class="city-item">Tangerang</div>
+      <div class="city-item">Bekasi</div>
+      <div class="city-item">Bogor</div>
+      <div class="city-item">Jakarta</div>
+      <div class="city-item">Kalimantan</div>
+      <div class="city-item">Tegal</div>
+      <div class="city-item">Kendal</div>
+      <!-- duplicate for infinite scroll -->
+      <div class="city-item">Malang</div>
+      <div class="city-item">Surabaya</div>
+      <div class="city-item">Semarang</div>
+      <div class="city-item">Tangerang</div>
+      <div class="city-item">Bekasi</div>
+      <div class="city-item">Bogor</div>
+      <div class="city-item">Jakarta</div>
+      <div class="city-item">Kalimantan</div>
+      <div class="city-item">Tegal</div>
+      <div class="city-item">Kendal</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ KEUNGGULAN FEATURE IMAGES ══════════ -->
+<section id="keunggulan">
+  <div class="wrap">
+    <p class="section-eyebrow reveal">Mengapa Memilih Kami</p>
+    <h2 class="section-h2 reveal" style="color:#fff;">Keunggulan Vectra Architects</h2>
+
+    <div class="kung-grid">
+
+      <div class="kung-card reveal">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/ARSITEK-PROFESIONAL.png"
+             alt="Arsitek Profesional"/>
+        <div class="kung-overlay"><div class="kung-overlay-text">Arsitek Profesional</div></div>
+      </div>
+
+      <div class="kung-card reveal d1">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/BERAPA-HARGA-DESAIN-ARSITEK.png"
+             alt="Harga Desain Terjangkau"/>
+        <div class="kung-overlay"><div class="kung-overlay-text">Harga Terjangkau & Transparan</div></div>
+      </div>
+
+      <div class="kung-card reveal d2">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/HARGA-DESAIN-ARSITEK.png"
+             alt="Paket Harga Jelas"/>
+        <div class="kung-overlay"><div class="kung-overlay-text">Paket Harga Berbasis m²</div></div>
+      </div>
+
+      <div class="kung-card reveal">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/ARSITEK-PALING-BAGUS-DI-BEKASI.png"
+             alt="Kualitas Terbaik"/>
+        <div class="kung-overlay"><div class="kung-overlay-text">Kualitas Desain Terbaik</div></div>
+      </div>
+
+      <div class="kung-card reveal d1">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/DESAIN-RUMAH-SENDIRI-1.png"
+             alt="Desain Sesuai Keinginan"/>
+        <div class="kung-overlay"><div class="kung-overlay-text">Desain Sesuai Gaya Hidup Anda</div></div>
+      </div>
+
+      <div class="kung-card reveal d2">
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/JASA-DESAIN-ARSITEK-1.png"
+             alt="Jasa Desain Lengkap"/>
+        <div class="kung-overlay"><div class="kung-overlay-text">Jasa Desain Lengkap & Personal</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT CTA ══════════ -->
+<section id="contact">
+  <div class="wrap reveal">
+    <p class="contact-h2">Punya rencana membangun atau merenovasi dalam waktu dekat?</p>
+    <p class="contact-sub">
+      Dapatkan konsultasi gratis dan layanan penuh dari arsitek berpengalaman kami.<br/>
+      Ceritakan visi Anda — kami siap mewujudkannya.
+    </p>
+    <a href="https://wa.me/6282134816488?text=Halo,%20saya%20tertarik%20dengan%20jasa%20arsitek%20Vectra%20Architects,%20mohon%20informasi%20lengkapnya%20ya"
+       target="_blank" class="contact-btn">
+      <span class="material-icons" style="font-size:1rem!important;">chat</span>
+      Hubungi Kami
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ PROSES / OUR PROCESS ══════════ -->
+<section id="proses">
+  <div class="wrap">
+    <div class="process-header reveal">
+      <p class="section-eyebrow">Cara Kerja Kami</p>
+      <h2 class="section-h2">Proses Kerja Kami</h2>
+    </div>
+    <div class="process-steps">
+      <div class="pstep reveal">
+        <div class="pstep-num">1</div>
+        <div class="pstep-title">Konsultasi</div>
+        <div class="pstep-desc">Diskusi awal kebutuhan, gaya, dan anggaran Anda</div>
+      </div>
+      <div class="pstep reveal d1">
+        <div class="pstep-num">2</div>
+        <div class="pstep-title">Survey</div>
+        <div class="pstep-desc">Analisis lokasi dan potensi desain di lapangan</div>
+      </div>
+      <div class="pstep reveal d2">
+        <div class="pstep-num">3</div>
+        <div class="pstep-title">Desain</div>
+        <div class="pstep-desc">Pengembangan konsep + visualisasi 3D lengkap</div>
+      </div>
+      <div class="pstep reveal d3">
+        <div class="pstep-num">4</div>
+        <div class="pstep-title">Presentasi</div>
+        <div class="pstep-desc">Review bersama dan revisi hingga Anda puas</div>
+      </div>
+      <div class="pstep reveal d2">
+        <div class="pstep-num">5</div>
+        <div class="pstep-title">Gambar Kerja</div>
+        <div class="pstep-desc">Dokumen DED teknis siap bangun disiapkan</div>
+      </div>
+      <div class="pstep reveal d3">
+        <div class="pstep-num">6</div>
+        <div class="pstep-title">Serah Terima</div>
+        <div class="pstep-desc">File digital lengkap diserahkan beserta RAB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY VECTRA ══════════ -->
+<section id="why">
+  <div class="wrap">
+    <div class="why-header reveal">
+      <p class="section-eyebrow">Keunggulan Kami</p>
+      <h2 class="section-h2">Mengapa Vectra Architects?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="material-icons why-icon">chat</span>
+        <div class="why-title">Konsultasi Gratis</div>
+        <div class="why-desc">Kami memberikan konsultasi awal secara gratis untuk memahami kebutuhan dan menjawab semua pertanyaan Anda tanpa biaya apapun.</div>
+      </div>
+      <div class="why-card reveal d1">
+        <span class="material-icons why-icon">school</span>
+        <div class="why-title">Arsitek Bersertifikasi</div>
+        <div class="why-desc">Tim kami terdiri dari arsitek lulusan Sarjana dan Magister dengan pengalaman nyata di lapangan — bukan sekadar gelar.</div>
+      </div>
+      <div class="why-card reveal d2">
+        <span class="material-icons why-icon">workspace_premium</span>
+        <div class="why-title">Kualitas Terjamin</div>
+        <div class="why-desc">Setiap proyek dikerjakan dengan standar profesional tertinggi. Kepuasan Anda adalah prioritas utama kami di setiap tahapan.</div>
+      </div>
+      <div class="why-card reveal">
+        <span class="material-icons why-icon">location_on</span>
+        <div class="why-title">Jangkauan Nasional</div>
+        <div class="why-desc">Kami telah melayani klien di lebih dari 10 kota besar Indonesia — dari Jabodetabek hingga Kalimantan — dengan hasil yang konsisten.</div>
+      </div>
+      <div class="why-card reveal d1">
+        <span class="material-icons why-icon">handyman</span>
+        <div class="why-title">Layanan Personal</div>
+        <div class="why-desc">Setiap klien mendapatkan perhatian penuh dan pendekatan yang disesuaikan dengan gaya hidup serta visi unik mereka.</div>
+      </div>
+      <div class="why-card reveal d2">
+        <span class="material-icons why-icon">payments</span>
+        <div class="why-title">Harga Transparan</div>
+        <div class="why-desc">Sistem penawaran berbasis m² yang jelas dan mudah dipahami. Tidak ada biaya tersembunyi — semua sudah tertera sejak awal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PAKET / PRICING ══════════ -->
+<section id="paket">
+  <div class="wrap">
+    <div class="paket-header reveal">
+      <p class="section-eyebrow">Paket Desain</p>
+      <h2 class="section-h2">Temukan Paket yang Tepat</h2>
+    </div>
+    <p class="paket-sub">
+      Harga transparan berbasis luas bangunan (m²). Bebas dikombinasikan untuk mewujudkan hunian idaman maupun area komersial yang produktif.
+    </p>
+
+    <div class="pkg-grid">
+
+      <!-- Paket 1 -->
+      <div class="pkg-card reveal">
+        <div class="pkg-tag">Paket 01</div>
+        <div class="pkg-name">Bangunan Dasar</div>
+        <div class="pkg-price"><span class="pkg-num">50K</span><span class="pkg-unit">&nbsp;/ m²</span></div>
+        <div class="pkg-hr"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>3D Eksterior 2–3 view</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Gambar Denah Lengkap</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Gambar Tampak</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Gambar Potongan</li>
+        </ul>
+        <a href="https://wa.me/6282134816488?text=Halo!%20Saya%20tertarik%20dengan%20paket%20*bangunan%20dasarnya*." target="_blank" class="pkg-btn">Pilih Paket</a>
+      </div>
+
+      <!-- Paket 2 -->
+      <div class="pkg-card reveal d1">
+        <div class="pkg-tag">Paket 02</div>
+        <div class="pkg-name">Bangunan DED</div>
+        <div class="pkg-price"><span class="pkg-num">65K</span><span class="pkg-unit">&nbsp;/ m²</span></div>
+        <div class="pkg-hr"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>3D Eksterior 4–6 view</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Denah, Tampak, Potongan</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Detail Arsitektur Dasar</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Acuan Pembangunan Ringkas</li>
+        </ul>
+        <a href="https://wa.me/6282134816488?text=Halo!%20Saya%20tertarik%20dengan%20paket%20*bangunan%20DED%20nya*." target="_blank" class="pkg-btn">Pilih Paket</a>
+      </div>
+
+      <!-- Paket 3 FEATURED -->
+      <div class="pkg-card pkg-feat reveal d2">
+        <div class="pkg-tag">⭐ Terpopuler — Paket 03</div>
+        <div class="pkg-name">DED Lengkap &amp; RAB</div>
+        <div class="pkg-price"><span class="pkg-num">90K</span><span class="pkg-unit">&nbsp;/ m²</span></div>
+        <div class="pkg-hr"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>3D Eksterior 4–8 view</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Video Animasi Eksterior</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Detail Arsitektur &amp; Struktur</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Detail Listrik &amp; Plumbing</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>RAB (Rencana Anggaran Biaya)</li>
+        </ul>
+        <a href="https://wa.me/6282134816488?text=Halo!%20Saya%20tertarik%20dengan%20paket%20*DED%20lengkap%20dan%20RAB%20nya*." target="_blank" class="pkg-btn">Pilih Paket</a>
+      </div>
+
+      <!-- Paket 4 -->
+      <div class="pkg-card reveal d3">
+        <div class="pkg-tag">Paket 04</div>
+        <div class="pkg-name">Desain Interior</div>
+        <div class="pkg-price"><span class="pkg-num">155K</span><span class="pkg-unit">&nbsp;/ m²</span></div>
+        <div class="pkg-hr"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>3D Eksterior &amp; Interior</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Video Animasi Eksterior</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Detail Arsitektur &amp; Struktur</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>Detail Listrik &amp; Plumbing</li>
+          <li class="pkg-feat-item"><span class="pkg-check"><svg viewBox="0 0 14 14"><polyline points="2,7 5,11 12,3"/></svg></span>RAB (Rencana Anggaran Biaya)</li>
+        </ul>
+        <a href="https://wa.me/6282134816488?text=Halo!%20Saya%20tertarik%20dengan%20paket%20*desain%20interiornya*." target="_blank" class="pkg-btn">Pilih Paket</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <!-- Brand -->
+      <div>
+        <img src="https://vectraarchitects.com/wp-content/uploads/2026/06/Untitled-1-6.png"
+             alt="Vectra Architects" class="ft-logo"/>
+        <p class="ft-tagline">"Forming Spaces,<br/>Directing Visions."</p>
+        <div class="ft-social">
+          <a href="https://wa.me/6282134816488" target="_blank">WA</a>
+          <a href="https://www.instagram.com/vectra_architects/" target="_blank">IG</a>
+          <a href="#" target="_blank">YT</a>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <div>
+        <div class="ft-head">Navigasi</div>
+        <ul class="ft-links">
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#services">Layanan</a></li>
+          <li><a href="#portofolio">Portofolio</a></li>
+          <li><a href="#proses">Proses Kerja</a></li>
+          <li><a href="#paket">Paket Harga</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <div class="ft-head">Hubungi Kami</div>
+        <div class="ft-contact-row">
+          <span class="material-icons">phone</span>
+          <a href="tel:+6282134816488" style="color:rgba(255,255,255,.4);">082 134 816 488</a>
+        </div>
+        <div class="ft-contact-row">
+          <span class="material-icons">chat</span>
+          <a href="https://wa.me/6282134816488" target="_blank" style="color:rgba(255,255,255,.4);">WhatsApp</a>
+        </div>
+        <div class="ft-contact-row">
+          <span class="material-icons">photo_camera</span>
+          <a href="https://www.instagram.com/vectra_architects/" target="_blank" style="color:rgba(255,255,255,.4);">@vectra_architects</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">© 2026 Vectra Architects. All rights reserved.</span>
+      <span class="ft-copy">Designed with intention.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ FLOATING WHATSAPP ══════════ -->
+<a href="https://wa.me/6282134816488?text=Halo,%20saya%20tertarik%20dengan%20jasa%20arsitek%20Vectra%20Architects,%20mohon%20informasi%20lengkapnya%20ya"
+   target="_blank" class="wa-btn" title="Chat WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ══════════ SCRIPTS ══════════ -->
+<script>
+  /* navbar scroll */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* mobile menu */
+  document.getElementById('hbg').onclick = () => document.getElementById('mobMenu').classList.add('open');
+  document.getElementById('mobClose').onclick = closeMob;
+  function closeMob(){ document.getElementById('mobMenu').classList.remove('open'); }
+
+  /* hero slideshow */
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  let cur = 0, timer;
+
+  function goSlide(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    clearInterval(timer);
+    timer = setInterval(() => goSlide(cur + 1), 5000);
+  }
+  timer = setInterval(() => goSlide(cur + 1), 5000);
+
+  /* scroll reveal */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('v'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* active nav on scroll */
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let id = '';
+    secs.forEach(s => { if(window.scrollY >= s.offsetTop - 130) id = s.id; });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${id}` ? 'var(--gold)' : 'rgba(255,255,255,.75)';
+    });
+  });
+</script>
+</body>
+</html>
